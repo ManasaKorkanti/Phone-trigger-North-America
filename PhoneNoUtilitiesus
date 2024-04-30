@@ -1,0 +1,27 @@
+public with sharing class PhoneNoUtilitiesus {
+    public static String formatNumber(String phone){
+        String countryCode='+1';
+        String newPhone=phone;
+        String ph='';
+        try{//1234567890
+            phone = phone.deleteWhitespace().replaceAll('\\D','').replaceFirst( '^0+', ''); //12
+            if (phone.startsWith('1')){
+                phone = phone.replaceFirst( '1', '');
+            }
+            ph = Phone;
+            if ((ph.startsWith('800') || ph.startsWith('833') || ph.startsWith('844') || 
+                 ph.startsWith('855') || ph.startsWith('866') || ph.startsWith('877') || 
+                 ph.startsWith('888'))  && ph.length()==10){
+                ph = 1+'-'+ph.substring(0, 3)+'-'+ph.substring(3, 6)+'-'+ph.substring(6, 10);
+                newPhone = ph; 
+            } else{
+                    ph = countryCode+' '+'('+ph.substring(0, 3)+')'+' '+ph.substring(3, 6)+'-'+ph.substring(6, 10);
+            }
+                newPhone = ph;
+            }
+        	catch (Exception e){
+            System.debug(e.getMessage());
+        }
+        return newPhone;
+    }
+}
