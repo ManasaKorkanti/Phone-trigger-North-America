@@ -1,0 +1,17 @@
+@isTest
+private class TestLeadPhNoFormatterus {
+  @isTest
+  private static void testInsertLead() {
+    List<Lead> cont = new List<Lead>();
+    Lead c1= new Lead ( lastNAME='Lead ABC', Phone='234 234 2345', MobilePhone='12332223434', Company='ABC',Status='Open - Not Contacted' );
+    cont.add(c1);
+    Lead c2 = new Lead (lastNAME='Lead DEF', Phone='800 123 1234', MobilePhone='844 222 2222', Company='DEF',Status='Open - Not Contacted');
+    cont.add(c2);
+    Insert cont;
+    Lead c3= [SELECT Id, Phone, MobilePhone FROM Lead where Id=:c1.Id];
+    Lead c4= [SELECT Id, Phone, MobilePhone FROM Lead where Id=:c2.Id];
+    System.assertEquals('+1 (234) 234-2345',c3.Phone);
+    System.assertEquals('1-800-123-1234',c4.phone);
+    System.assertEquals('1-844-222-2222',c4.MobilePhone);
+  }
+}
